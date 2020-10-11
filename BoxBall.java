@@ -1,7 +1,7 @@
 import java.util.Random;
-import java.util.HashSet;
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Color;;
+import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D;
 
 /**
  * The BoxBall class gives a graphical representation of multiple bouncing balls. 
@@ -85,10 +85,11 @@ public class BoxBall
         
         //Check to see if new position exceeds box borders,
         //use int cast since  getMax method returns a double
+        //use int cast since Rectangle "get" methods returns a double
         //This is the check on the bottom edge, with ball traveling with a positive value going down
-        if (yAxis > ((int)(boxSettings.getHeight())-1) - ballDiameter && ySpeed > 0)
+        if (yAxis > ((int)boxSettings.getY()+(int)(boxSettings.getHeight())-1) - ballDiameter && ySpeed > 0)
         {
-            yAxis = ((int)(boxSettings.getHeight())-1) - ballDiameter ;
+            yAxis = ((int)boxSettings.getY()+(int)(boxSettings.getHeight())-1) - ballDiameter ;
             //Have ball travel back and re-position with new speed, that can't be 0
             ySpeed = -ySpeed + (random.nextInt(7) + 1);
             //Do a check to see if speed incrementing has run out - if so, set speed to 0
@@ -110,9 +111,9 @@ public class BoxBall
             }  
         }   
         //This is the check on the right edge with ball traveling with a positive value going right
-        if (xAxis > ((int)(boxSettings.getWidth()) -1) - ballDiameter && xSpeed > 0)
+        if (xAxis > ((int)boxSettings.getX()+(int)(boxSettings.getWidth()) -1) - ballDiameter && xSpeed > 0)
         {
-            xAxis = ((int)(boxSettings.getWidth())-1) - ballDiameter ;
+            xAxis = ((int)boxSettings.getX()+(int)(boxSettings.getWidth())-1) - ballDiameter ;
             //Have ball travel back and re-position with new speed, that can't be 0
             xSpeed = -xSpeed + (random.nextInt(7) + 1);
              //Do a check to see if speed incrementing has run out - if so, set speed to 0 
